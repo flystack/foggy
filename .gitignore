@@ -1,0 +1,4 @@
+*.gem
+.bundle/
+.byebug_history
+misty.log
