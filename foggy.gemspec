@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gilles Dubreuil"]
   spec.email         = ["gilles@redhat.com"]
 
-  spec.summary       = %q{Foggy is a RESTful client for OpenStack APIs.}
-  spec.description   = %q{Foggy aims to be fast and to provide a flexible and exhaustive APIs experience}
+  spec.summary       = %q{Foggy is a collection management for OpenStack APIs.}
+  spec.description   = %q{Foggy is a collection management for Openstack APIs.}
   spec.homepage      = "https://github.com/flystack/foggy"
   spec.license       = "GPL-3.0"
 
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ['--charset=UTF-8']
   spec.extra_rdoc_files = %w[README.md LICENSE.md]
 
-  spec.add_dependency 'misty', '~> 0.2'
+  spec.add_dependency 'misty', '~> 0.7.0'
 
   spec.add_development_dependency 'bundler',    '~> 1.10'
   spec.add_development_dependency 'rake',       '~> 10.0'

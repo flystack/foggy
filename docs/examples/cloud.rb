@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require 'foggy'
-require 'pp'
 
 # In order ot obtain a scoped (project and domain) token:
 auth_v3 = {
@@ -11,14 +10,17 @@ auth_v3 = {
   :domain   => "default"
 }
 
-openstack = Misty::Cloud.new(:auth => auth_v3, :identity => {:base_path => ""})
+cloud = Foggy::Cloud.new(:auth => auth_v3)
 
-cloud = Foggy::Cloud.new(openstack)
+users = cloud.identity.users
+networks = cloud.networking.networks
+p networks.all
+p networks[0]
+p networks[0].id
+p networks[0].name
+networks.reload
 
-pp users = cloud.identity.users
+network = cloud.networking.networks.get("f3180183-9e7a-42d7-b76a-23b2c95af121")
+network.name="new name"
 
-nets = cloud.network.networks
-first_network = nets[0]
-pp first_network
-
-pp cloud.network.networks.create(:network => {:name => "misty-example"})
+subnets = cloud.networking.subnets.all
