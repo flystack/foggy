@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class ObjectStorage < Foggy::Service
+  class ObjectStorage
+    extend Foggy::Collections
   end
 end

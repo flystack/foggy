@@ -1,7 +1,7 @@
 require "foggy/collections"
 
 module Foggy
-  class Image
+  class NFVOrchestration
     extend Foggy::Collections
   end
 end

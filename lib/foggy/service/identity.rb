@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class Identity < Foggy::Service
+  class Identity
+    extend Foggy::Collections
   end
 end

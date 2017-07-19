@@ -1,7 +1,9 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class Messaging < Foggy::Service
+  class Messaging
+    extend Foggy::Collections
+
     define_collection :images
   end
 end

@@ -1,22 +1,27 @@
 module Foggy
   module Collection
-    def initialize(service, element)
-      @element = element
-      # For example: Foggy::Networking::
-      @element_klass = self.class.const_get(@element.capitalize)
-      @service = service
-      @collection = build
+    def initialize(element)
+      @element_klass = self.class.const_get(element.capitalize)
+      @collection_kass = self.class
+      @collection = collect
     end
 
     def all
       @collection
     end
 
+    def create(element)
+      api_create_element = "create_#{element_name}".to_sym
+      response = service.send(api_create_element, element)
+    end
+
     def get(id)
       element = fetch(id)
-      if element
-        @element_klass.new(element)
-      end
+      @element_klass.new(element) if element
+    end
+
+    def element_name
+      klass_name(@element_klass).downcase
     end
 
     def reload
@@ -25,17 +30,7 @@ module Foggy
 
     private
 
-    def self.create_element_class
-      unless class_exists?(name.capitalize)
-        self.const_set(name.capitalize, Class.new do
-          include Foggy::Element
-        end)
-      else
-        raise RuntimeError, "Error: #{self}::#{name.capitalize} already defined"
-      end
-    end
-
-    def build
+    def collect
       list = []
       if collection
         collection.each do |element|
@@ -50,36 +45,27 @@ module Foggy
     end
 
     def collection_name
-      self.class.to_s.split('::')[-1].downcase
-    end
-
-    def collection_prefix
-      self.class.to_s.split('::')[-1].downcase
-    end
-
-    def fetch_all
-      response = @service.send(name_fetch_all)
-      response.body[collection_name] if response.code =~ /200/
+      klass_name(self.class).downcase
     end
 
     def fetch(id)
-      response = @service.send(name_fetch_element, id)
-      response.body[@element] if response.code =~ /200/
+      api_show_element_details = "show_#{element_name}_details"
+      response = service.send(api_show_element_details, id)
+      response.body[element_name] if response.code =~ /200/
     end
 
-    def name_fetch_all
-      "list_#{collection_name}"
+    def fetch_all
+      api_list_collection = "list_#{collection_name}"
+      response = service.send(api_list_collection)
+      response.body[collection_name] if response.code =~ /200/
     end
 
-    def name_fetch_element
-      "show_#{@element}_details"
+    def klass_name(klass)
+      klass.to_s.split('::')[-1]
     end
 
-    def service_class
-      project = @service.class.to_s.split('::')[-2]
-      Misty.services.each do |e|
-        return e.name.to_s if e.project == project.downcase.to_sym
-      end
+    def service
+      self.class.service
     end
   end
 end

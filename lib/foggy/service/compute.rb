@@ -1,7 +1,10 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class Compute < Foggy::Service
-    collection :servers
+  class Compute
+    extend Foggy::Collections
+
+    define :flavors
+    define :servers
   end
 end

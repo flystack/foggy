@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class DataProcessing < Foggy::Service
+  class DataProcessing
+    extend Foggy::Collections
   end
 end

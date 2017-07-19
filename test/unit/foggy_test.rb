@@ -23,9 +23,8 @@ describe "Foggy" do
       to_return(:status => 200, :body => "[]", :headers => {})
 
     cloud = Foggy::Cloud.new(:auth => auth_v3)
-
-    klass = cloud.networking
-    klass.must_be_kind_of Foggy::Networking
+binding.pry
+    cloud.networking.must_be_kind_of Foggy::Networking
     cloud.networking.networks.must_be_kind_of Foggy::Networking::Networks
     cloud.networking.networks.all.must_equal ([])
   end

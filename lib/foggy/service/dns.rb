@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class DNS < Foggy::Service
+  class DNS
+    extend Foggy::Collections
   end
 end

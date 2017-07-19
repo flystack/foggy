@@ -1,6 +1,9 @@
-require "foggy/service"
+require 'foggy/collections'
 
 module Foggy
-  class Alarming < Foggy::Service
+  class Alarming
+    extend Foggy::Collections
+
+    define :alarms
   end
 end

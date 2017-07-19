@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class Search < Foggy::Service
+  class Search
+    extend Foggy::Collections
   end
 end

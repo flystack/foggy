@@ -1,6 +1,4 @@
-require 'misty'
 require 'foggy/foggy'
 require 'foggy/autoload'
-require 'foggy/service'
 require 'foggy/collection'
 require 'foggy/element'

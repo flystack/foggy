@@ -1,11 +1,13 @@
-require "foggy/service"
+require 'foggy/collections'
 
 module Foggy
-  class Networking < Foggy::Service
+  class Networking
+    extend Foggy::Collections
+
     define :extensions
     define :floating_ips
-    define :ike_policies, :ike_policy
-    define :ipsec_policies, :ipsec_policy
+    define :ike_policies
+    define :ipsec_policies
     define :ipsec_site_connections
     define :lb_health_monitors
     define :lb_members

@@ -1,6 +1,7 @@
-require "foggy/service"
+require "foggy/collections"
 
 module Foggy
-  class Metering < Foggy::Service
+  class Metering
+    extend Foggy::Collections
   end
 end
